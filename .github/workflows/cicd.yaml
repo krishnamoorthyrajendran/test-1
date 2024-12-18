@@ -27,7 +27,7 @@ jobs:
       
       - name: Deploy for dev
         run: |
-          docker stack deploy --compose-file dockerfile/docker-compose.yaml dev
+          docker stack deploy --compose-file docker/docker-compose.yml dev
           
   build-qa:
     if: github.ref == 'refs/heads/qa'
