@@ -27,7 +27,7 @@ jobs:
       
       - name: Deploy for dev
         run: |
-          docker stack deploy --compose-file dockerfile/docker-compose.yaml wakatech-dev
+          docker stack deploy --compose-file dockerfile/docker-compose.yaml dev
           
   build-qa:
     if: github.ref == 'refs/heads/qa'
@@ -51,4 +51,4 @@ jobs:
       
       - name: Deploy for QA
         run: |
-          docker stack deploy --compose-file dockerfile/docker-compose.yaml odoo17-EE
+          docker stack deploy --compose-file dockerfile/docker-compose.yaml qa
