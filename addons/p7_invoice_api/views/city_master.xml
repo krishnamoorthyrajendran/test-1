@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- Tree View -->
+    <record id="view_wakatech_city_tree" model="ir.ui.view">
+        <field name="name">wakatech.city.tree</field>
+        <field name="model">waka.city.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- <field name="wakatech_city_id"/> -->
+                <field name="name"/>
+                <field name="state_id"/>
+                <!-- <field name="state_code"/>
+                <field name="country_id"/>
+                <field name="country_code"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_wakatech_city_form" model="ir.ui.view">
+        <field name="name">wakatech.city.form</field>
+        <field name="model">waka.city.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <!-- <field name="wakatech_city_id" /> -->
+                        <field name="name"/>
+                        <field name="state_id"/>
+                        <!-- <field name="state_code"/>
+                        <field name="country_id"/>
+                        <field name="country_code"/> -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for City Master -->
+    <record id="action_wakatech_city" model="ir.actions.act_window">
+        <field name="name">City Master</field>
+        <field name="res_model">waka.city.master</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu for City Master -->
+    <menuitem id="menu_wakatech_city" name="City" parent="p7_invoice_api.wakatech_masters" action="action_wakatech_city" sequence="3"/>
+    </data>
+</odoo>

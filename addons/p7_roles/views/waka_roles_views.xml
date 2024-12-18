@@ -1,0 +1,68 @@
+<odoo>
+
+<!-- inherit users to add is_admin and admin_company_ids -->
+
+    <record id="view_users_form_inherit_admin_users" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.admin.users</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <!-- Adding fields after partner_id -->
+            <xpath expr="//field[@name='company_id']" position="after">
+               
+                <field name="is_waka_admin" readonly="0"/>
+                <field name="admin_company_ids" readonly="0" widget="many2many_tags"/>
+               
+            </xpath>
+        </field>
+    </record>
+    <!-- Form view for waka.roles -->
+    <record id="view_waka_roles_form" model="ir.ui.view">
+        <field name="name">waka.roles.form</field>
+        <field name="model">waka.roles</field>
+        <field name="arch" type="xml">
+            <form string="Waka Group">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="role_name"/>
+                            <field name="company_id"/>
+                            <field name="accounting_group" domain="[('is_waka_group', '=', True)]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Users in Role">
+                            <field name="user_ids" context="{'default_waka_group_id': active_id}">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for waka.roles -->
+    <record id="view_waka_roles_tree" model="ir.ui.view">
+        <field name="name">waka.roles.tree</field>
+        <field name="model">waka.roles</field>
+        <field name="arch" type="xml">
+            <tree string="Waka Groups">
+                <field name="role_name"/>
+                <field name="company_id"/>
+                <field name="accounting_group"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to open waka.roles -->
+    <record id="action_waka_roles" model="ir.actions.act_window">
+        <field name="name">Waka Groups</field>
+        <field name="res_model">waka.roles</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item for waka.roles -->
+    <menuitem id="menu_waka_roles" name="Roles" parent="base.menu_users" action="action_waka_roles" sequence="10"/>
+
+</odoo>

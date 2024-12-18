@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Define the group -->
+    <record id="group_custom_manager_jinren" model="res.groups">
+        <field name="name">Access to Jinren Vat invoice</field>
+        <!-- <field name="category_id" ref="base.module_category_user_type"/> Optional: Category for grouping -->
+        <field name="comment">This group grants access to Jinren functionalities.</field>
+    </record>
+</odoo>

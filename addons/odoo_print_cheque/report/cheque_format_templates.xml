@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>   <!--Cheque print template-->
+    <template id="cheque_print">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div t-attf-style="width:{{cheque_width}}mm; height:{{cheque_height}}mm; font-size:{{font_size}}mm;">
+                    <!--Account payee cheque format-->
+                    <div t-if="is_account_payee">
+                        <img src="odoo_print_cheque/static/src/img/accountpay.png"
+                             t-attf-style="margin-left:{{a_c_payee_left_margin}}mm; margin-top:{{a_c_payee_top_margin}}mm; width:{{a_c_payee_width}}mm; height:{{a_c_payee_height}}mm"/>
+                    </div>
+                    <!--Cheque sequence number format-->
+                    <!-- <div t-attf-style="margin-left:{{cheque_no_lm}}mm; margin-top:{{cheque_no_tm}}mm;">
+                        <t t-if="print_cheque_number">
+                            <span>
+                                <t t-esc="check_number"/>
+                            </span>
+                        </t>
+                        <t t-else=""/>
+                    </div> -->
+                    <!--Cheque date format-->
+                    <div t-attf-style="margin-left:{{ date_left_margin }}mm; margin-top:{{ date_top_margin }}mm; letter-spacing: {{ date_letter_spacing }}em;">
+                        <t t-esc="cheque_date"/>
+                    </div>
+                    <!--Partner Name format-->
+                    <div t-attf-style="margin-left:{{beneficiary_left_margin}}mm; margin-top:{{beneficiary_top_margin}}mm;">
+                        <t t-esc="partner"/>
+                    </div>
+                    <!-- Amount in words format-->
+                    <div t-attf-style="margin-left:{{amount_word_lm}}mm; margin-top:{{amount_word_tm}}mm; letter-spacing: {{amount_word_ls}}em;">
+                        <t t-esc="amount_in_words"/>
+                        Only
+                    </div>
+                    <!--Amount in digits format-->
+                    <div class="text-nowrap" t-attf-style="margin-left:{{amount_digit_lm}}mm; margin-top:{{amount_digit_tm}}mm; letter-spacing: {{amount_digit_ls}}em; font-size:{{amount_digit_size}}mm;">
+                        <t t-if="print_currency">
+                            <t t-esc="currency_symbol"/>
+                        </t>
+                        <t t-esc="amount_in_digit"/>/-
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!--Test cheque print template-->
+    <template id="cheque_test_print">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div t-attf-style="width:{{cheque_width}}mm; height:{{cheque_height}}mm; font-size:{{font_size}}mm;">
+                    <!--Account payee cheque format-->
+                    <div t-if="is_account_payee">
+                        <img src="odoo_print_cheque/static/src/img/accountpay.png"
+                             t-attf-style="margin-left:{{a_c_payee_left_margin}}mm; margin-top:{{a_c_payee_top_margin}}mm;
+                                           width:{{a_c_payee_width}}mm; height:{{a_c_payee_height}}mm"/>
+                    </div>
+                    <!--Cheque sequence number format-->
+                    <div t-attf-style="margin-left:{{cheque_no_lm}}mm; margin-top:{{cheque_no_tm}}mm;">
+                        <t t-if="print_cheque_number">
+                            <span>0000001</span>
+                        </t>
+                        <t t-else=""/>
+                    </div>
+                    <!--Cheque date format-->
+                    <div t-attf-style="margin-left:{{date_left_margin}}mm; margin-top:{{date_top_margin}}mm; letter-spacing:{{date_letter_spacing}}em;">
+                        <t t-if="date_remove_slashes">
+                            <span>30 08 2001</span>
+                        </t>
+                        <t t-else="">
+                            30/08/2001
+                        </t>
+                    </div>
+                    <!--Partner Name format-->
+                    <div t-attf-style="margin-left:{{beneficiary_left_margin}}mm; margin-top:{{beneficiary_top_margin}}mm;">
+                        Test Customer
+                    </div>
+                    <!-- Amount in words format-->
+                    <div t-attf-style="margin-left:{{amount_word_lm}}mm; margin-top:{{amount_word_tm}}mm; letter-spacing:{{amount_word_ls}}em;">
+                        One Million, Two Hundred And Forty Thousand, Six Hundred And Twelve Dollars
+                    </div>
+                    <!--Amount in digits format-->
+                    <div t-attf-style="margin-left:{{amount_digit_lm}}mm; margin-top:{{amount_digit_tm}}mm; letter-spacing:{{amount_digit_ls}}em;
+                                       font-size:{{amount_digit_size}}mm;">
+                        <t t-if="print_currency">
+                            <t t-esc="currency_symbol"/>
+                        </t>
+                        12,40,612 /-
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

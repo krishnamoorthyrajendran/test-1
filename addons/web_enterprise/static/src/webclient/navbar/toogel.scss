@@ -1,0 +1,211 @@
+.sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+    padding: 0;
+    background: var(--primary);
+    // transition: var(--tran-100);
+    transition: 5.0s;
+    z-index: 9999;
+}
+
+.sidebar_icon{
+    // min-width: 60px;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.sidebar_text{
+    font-size: 17px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+    color: white;
+
+}
+
+.center{
+    display: block;
+    padding: 8px 8px 8px 32px;
+    }
+.logo-center{
+    display: block;
+    padding: 8px 8px 8px 13px;
+}
+.text-content{
+    display: block;
+    padding: 8px 8px 8px 34px;
+}
+
+.sidebar_a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #f1f1f1;
+    display: block;
+    transition: 3.0s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+    left: 0;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+.main-menu-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+
+}
+
+.main-menu-item h3 {
+    margin-top: -3%;
+    font-size: 1.2em;
+    color: #ffffff;
+    cursor: pointer;
+    padding-left:25px;
+    font-family: 'Open Sans';
+    font-size: 12px ;
+    font-style: normal;
+    font-weight: 530 !important;
+    line-height: normal;
+}
+.main-menu-text{
+    margin: 0;
+    color: #fff;
+    font-family: 'Open Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-left: 12px;
+}
+
+.submenu-list {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.submenu-item {
+    margin-top: 9%;
+    // height: 200px;
+}
+
+.submenu-link {
+    text-decoration: none;
+    color: #a2cff2;
+    padding-left:10px;
+    font-family: 'Open Sans';
+    font-size: 12px ;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: normal;
+    // height: 200px;
+}
+
+
+.main-menu-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(7, 92, 159);
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.main-menu-title {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 1.2em;
+    color: #ffffff; /* Adjust color as needed */
+    cursor: pointer; /* Add cursor pointer for clickable effect */
+    position: relative;
+}
+.main-menu-title h3 {
+    flex: 1; /* Allow the title to take up remaining space */
+}
+.arrow-down {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust distance from the right edge */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #ffffff; /* Adjust color as needed */
+}
+
+.main-menu-logo {
+    width: 37px;
+    height: auto;
+    margin: 3px;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding-bottom:5px;
+    border-bottom: 1px solid rgb(7, 92, 159);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+
+}
+.main-menu-logo-inside{
+    width: 16%;
+    height: 15%;
+    margin-top: -5%;
+    display: block;
+    cursor: pointer;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+
+.main-menu-logo:hover {
+    transform: scale(1.1);
+}
+
+.submenu-logo {
+    width: 28px;
+    height: 28px;
+    margin-right: 5px;
+    color: #a2cff2;
+    vertical-align: middle;
+}
+
+.submenu-item {
+    display: flex;
+    align-items: center;
+}
+
+.submenu-link {
+    margin-left:2px;
+    text-decoration: none;
+    color: #a2cff2;
+    padding-left:10px;
+    font-family: 'Open Sans';
+    font-size: 12px ;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: normal;
+}
+
+.submenu-logo:hover {
+    color: #f1f1f1;
+}
+
+
+

@@ -1,0 +1,147 @@
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_jinren_master_tree" model="ir.ui.view">
+        <field name="name">jinren.master.tree</field>
+        <field name="model">jinren.master</field>
+        <field name="arch" type="xml">
+            <tree string="User Keys">
+                <field name="jinren_tenant_code" />
+                <field name="create_date"/>
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_jinren_master_form" model="ir.ui.view">
+        <field name="name">jinren.master.form</field>
+        <field name="model">jinren.master</field>
+        <field name="arch" type="xml">
+          <form string="User Key">
+              <sheet>
+                <group name="jinren_post" string="Push Invoice">
+                    <group>
+                        <field name="jinren_tenant_code" required="1"/>
+                        <field name="jinren_post_url" required="1"/>
+                        <field name="active" widget="boolean_toggle" />
+                        <field name="dll_path" />
+                        <field name="bouncycastle_path"/>
+                        <field name="rsa_helper_path"/>
+                        <field name="jinren_public_key" required="1"/>
+                    </group>
+                    <group>
+                        <field name="create_date" readonly="1"/>
+                        <field name="jinren_private_key" required="1"/>
+                  </group>
+                </group>
+                <group name="jinren_history" string="Jinren History">
+                    <field name="jinren_history_url" required="1"/>
+                </group>
+            </sheet>
+          </form>
+        </field>
+    </record>
+
+    <!-- Tree View for Jinren API Logs -->
+    <record id="view_jinren_api_logs_tree" model="ir.ui.view">
+        <field name="name">jinren.api.logs.tree</field>
+        <field name="model">jinren.api.logs</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="move_id"/>
+                <!-- <field name="jinren_raw_data"/>
+                <field name="encrypted_data"/> -->
+                <field name="create_date"/>
+                <field name="response_data"/>
+                <field name="status_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Jinren API Logs -->
+    <record id="view_jinren_api_logs_form" model="ir.ui.view">
+        <field name="name">jinren.api.logs.form</field>
+        <field name="model">jinren.api.logs</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="jinren_post" string="Push Invoice">
+                        <group>
+                            <field name="move_id" readonly="1"/>
+                            <field name="jinren_raw_data" widget="text" readonly="1"/>
+                            <field name="encrypted_data" widget="text" readonly="1"/>
+                            <field name="post_data" widget="text" readonly="1"/>
+                            <field name="public_xml" widget="text" invisible="1" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="create_date" readonly="1"/>
+                            <field name="response_data" widget="text" readonly="1"/>
+                            <field name="status_code" readonly="1"/>
+                            <field name="status" widget="text" readonly="1"/>
+                            <field name="error_remarks" widget="text" readonly="1"/>
+                        </group>
+                    </group>
+                    <group name="jinren_history" string="Jinren History">
+                        <group>
+                            <field name="hist_raw_data" widget="text" readonly="1"/>
+                            <field name="hist_post_data" widget="text" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="hist_response_data" widget="text" readonly="1"/>
+                            <field name="hist_status_code" widget="text" readonly="1"/>
+                            <field name="hist_status" widget="text" readonly="1"/>
+                            <field name="hist_error_remarks" widget="text" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <!-- Action for Jinren API Logs -->
+    <record id="action_jinren_api_logs" model="ir.actions.act_window">
+        <field name="name">Jinren API Logs</field>
+        <field name="res_model">jinren.api.logs</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Smart Button Integration in Invoice -->
+    <record id="view_invoice_form_inherit_jinren_logs" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.jinren.logs</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/div" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_jinren_logs" type="object" string="API Logs" icon="fa-exchange" class="oe_stat_button" groups="p7_invoice_api.group_custom_manager_jinren">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Jinren Logs</span>
+                        </div>
+                    </button>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+    
+
+    <record id="action_jinren_master" model="ir.actions.act_window">
+        <field name="name">Jinren API keys master</field>
+        <field name="res_model">jinren.master</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Jinren Keys.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_jinren_master" 
+              name="Jinren Keys" 
+              parent="account.account_invoicing_menu" 
+              action="action_jinren_master"
+              sequence="4"/>
+</odoo>

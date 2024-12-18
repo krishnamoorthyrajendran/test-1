@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_move_invoice_api_view" model="ir.ui.view">
+            <field name="name">account.move.invoice.api.view</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/field[@name='payment_reference']" position="after">
+                    <!-- <field name="shipping_invoice" string="Shipped Invoice" readonly="1" /> -->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

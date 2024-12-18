@@ -1,0 +1,53 @@
+<odoo>
+    <!-- Tree View for Invitee Users -->
+    <record id="view_invitee_users_tree" model="ir.ui.view">
+        <field name="name">invitee.users.tree</field>
+        <field name="model">invitee.users</field>
+        <field name="arch" type="xml">
+            <tree string="Invitee Users">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="mobile"/>
+                <field name="wechat_id"/>
+                <field name="contact_invite_id"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Invitee Users -->
+    <record id="view_invitee_users_form" model="ir.ui.view">
+        <field name="name">invitee.users.form</field>
+        <field name="model">invitee.users</field>
+        <field name="arch" type="xml">
+            <form string="Invitee Users">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="mobile"/>
+                            <field name="wechat_id"/>
+                            <field name="contact_invite_id"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open the Invitee Users View -->
+    <record id="action_invitee_users" model="ir.actions.act_window">
+        <field name="name">Invitee Users</field>
+        <field name="res_model">invitee.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_invitee_users_tree"/>
+    </record>
+
+    <!-- Menuitem for Invitee Users under Users & Companies -->
+    <menuitem id="menu_invitee_users"
+              name="Invitee Users"
+              parent="base.menu_users"
+              action="action_invitee_users"/>
+</odoo>

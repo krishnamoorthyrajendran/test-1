@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record id="view_invoice_form_inherit_for_einvoice" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- Locate the "Request Cancel" button -->
+                <xpath expr="//button[@name='button_request_cancel']" position="after">
+                    <!-- Add your new button for posting E-invoice to jinren -->
+                    <button string="Jinren E-Invoice" name="button_e_invoice" type="object" class="btn-primary"  groups="p7_invoice_api.group_custom_manager_jinren" invisible="state not in ['posted']"/>
+                    <button string="Jinren Status" name="button_jinren_history" type="object" class="btn-primary"  groups="p7_invoice_api.group_custom_manager_jinren" invisible="state not in ['posted']"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- page for Jinren fields -->
+        <record id="account_move_form_custom_inherit_jinren" model="ir.ui.view">
+            <field name="name">account.move.form.custom.inherit.jinren</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- Add the Jinren page before the "Other Info" page -->
+                <xpath expr="//page[@name='other_info']" position="before">
+                    <page name="jinren" string="Jinren"  groups="p7_invoice_api.group_custom_manager_jinren">
+                        <group>
+                            <group>
+                                <field name="invoice_type"/>
+                                <field name="machine_no"/>
+                                <field name="partner_id" string="Payee"/>
+                                <field name="checker_id"/>
+                                <field name="issuer_id"/>
+                            </group>
+                            <group>
+                                <field name="is_red"/>
+                                <field name="blue_vat_code"/>
+                                <field name="blue_vat_no"/>
+                                <field name="red_notice_num"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

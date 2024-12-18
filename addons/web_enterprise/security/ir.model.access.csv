@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_menu_list,menu_list.menu_list,model_menu_list,,1,1,1,1
+access_menu_line_item,menu_line_item.menu_line_item,model_menu_line_item,,1,1,1,1

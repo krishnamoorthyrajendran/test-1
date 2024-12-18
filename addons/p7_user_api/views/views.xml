@@ -1,0 +1,68 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_user_key_tree" model="ir.ui.view">
+        <field name="name">user.key.tree</field>
+        <field name="model">user.key</field>
+        <field name="arch" type="xml">
+            <tree string="User Keys">
+                <field name="key"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_user_key_form" model="ir.ui.view">
+        <field name="name">user.key.form</field>
+        <field name="model">user.key</field>
+        <field name="arch" type="xml">
+          <form string="User Key">
+              <sheet>
+                <group>
+                  <group>
+                    
+                    <field name="name"/>
+                    <field name="key"/>
+                  </group>
+                </group>
+            </sheet>
+          </form>
+        </field>
+    </record>
+
+    <record id="action_user_key" model="ir.actions.act_window">
+        <field name="name">User Keys</field>
+        <field name="res_model">user.key</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new User Key.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_user_key" 
+              name="User Keys" 
+              parent="base.menu_users" 
+              action="action_user_key"
+              sequence="100"/>
+
+    <!-- Res Users views -->
+    <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <!-- Adding fields after partner_id -->
+            <xpath expr="//field[@name='share']" position="after">
+                <group>
+                    <field name="wakatech_id" readonly="1"/>
+                    <field name="wechat_id"/>
+                    <!-- <field name="contact_invite_id"/> -->
+                </group>
+                
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

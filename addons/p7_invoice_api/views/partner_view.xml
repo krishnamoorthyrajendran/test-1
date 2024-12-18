@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_invoices" model="ir.ui.view">
+                    <field name="name">res.partner.form.invoice.api</field>
+                    <field name="model">res.partner</field>
+                    <field name="priority">2</field>
+                    <field name="inherit_id" ref="base.view_partner_form"/>
+                    <field name="arch" type="xml">
+                        <xpath expr="//group/span[@name='address_name']" position="before">
+                            <field name="wakatech_id" required="0" />
+                        </xpath>
+                    </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_users_inherit" model="ir.ui.view">
+            <field name="name">base_view_users_form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="auth_totp.view_totp_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='security']" position="after">
+                    <page string="Menu Configuration" name="menu config">
+                        <field name="menus" widget="one2many_tags">
+                            <tree string="Menu Configuration" editable="bottom">
+                                 <field name="main_menu"/>
+                                 <field name="logo" widget="url"/>
+                                 <field name="submenu_ids" widget="many2many_tags"/>  
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

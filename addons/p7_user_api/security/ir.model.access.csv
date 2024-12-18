@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_p7_user_api_user_key,p7_user_api.user_key,model_user_key,base.group_user,1,1,1,1
+access_p7_user_api_invitee_users,p7_user_api.invitee_users,model_invitee_users,base.group_user,1,1,1,1

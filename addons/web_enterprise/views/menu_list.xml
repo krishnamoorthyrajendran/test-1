@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="form_view_menu_list" model="ir.ui.view">
+            <field name="name">menu.list.form</field>
+            <field name="model">menu.list</field>
+            <field name="arch" type="xml">
+                <form string="Menus">
+                    <sheet>
+                      <group>
+                        <group>
+                          <field name="name"/>
+                          <field name="url"/>
+                          <field name="logo" widget="url"/>
+                          <field name="name_id"/>
+                        </group>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_menu_list_tree" model="ir.ui.view">
+            <field name="name">menu.list.tree</field>
+            <field name="model">menu.list</field>
+            <field name="arch" type="xml">
+                <tree string="Menu">
+                    <field name="name"/>
+                    <field name="url"/>
+                    <field name="name_id"/>
+                </tree>
+            </field>
+        </record>
+
+      <record id="action_menu_list" model="ir.actions.act_window">
+            <field name="name">Menu List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">menu.list</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_menu_list_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new Menu
+              </p><p>
+                Create and manage the Menu that will be managed by Odoo from here.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="sidenavebar_menu" name="Sidenavbar Menus" parent="base.menu_users" action="action_menu_list"/>
+
+
+
+    </data>
+</odoo>

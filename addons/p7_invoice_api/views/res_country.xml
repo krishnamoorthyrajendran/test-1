@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+        <!-- Inherit the existing action and update the view mode -->
+        <record id="action_country_state_inherit" model="ir.actions.act_window">
+            <field name="name">Fed.States</field>
+            <field name="res_model">res.country.state</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="base.view_country_state_tree"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a State
+                </p><p>
+                    Federal States belong to countries and are part of your contacts' addresses.
+                </p>
+            </field>
+        </record>
+
+     
+        <!-- Inherit the existing tree view of res.country.state -->
+        <record id="view_country_state_tree_inherit" model="ir.ui.view">
+            <field name="name">res.country.state.tree.inherit</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_tree"/>
+            <field name="arch" type="xml">
+                <!-- Use XPath to target the tree tag and remove the editable attribute -->
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable" />
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_country_state_form_inherit" model="ir.ui.view">
+            <field name="name">res.country.state.form.inherit</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="arch" type="xml">
+                <!-- Use XPath to target the tree tag and remove the editable attribute -->
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="wakatech_state_id" />
+                    <field name="wakatech_state" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_waka_country_form_inherit" model="ir.ui.view">
+            <field name="name">res.country.state.form.inherit</field>
+            <field name="model">res.country</field>
+            <field name="inherit_id" ref="base.view_country_form"/>
+            <field name="arch" type="xml">
+                <!-- Use XPath to target the tree tag and remove the editable attribute -->
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="wakatech_country_id" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

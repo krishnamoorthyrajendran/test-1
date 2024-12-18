@@ -1,0 +1,141 @@
+<odoo>
+  <data>
+  <!-- adding new field in company master called bearer token for invoice creation using api  -->
+  <record id="res_company_inherit_for_bearertoken" model="ir.ui.view">
+      <field name="name">res.company.inherit.bearer.token</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page[@name='general_info']/group/group" position="inside">
+            <field name="waka_company_id" string="Wakatech ID" readonly="1"/>
+        </xpath>
+        <xpath expr="//notebook/page[@name='branches']" position="before">
+            <page name="internal_team" string="Internal Team Members">
+                <field name="internal_team_members_ids">
+                    <tree editable="bottom">
+                        <field name="name"/>
+                        <field name="email"/>
+                        <!-- <field name="mobile"/> -->
+                    </tree>
+                </field>
+            </page>
+            <page name="external_stakeholders" string="External Stakeholders">
+                <field name="external_stakeholder_ids">
+                    <tree editable="bottom">
+                        <field name="name"/>
+                        <field name="contact_name"/>
+                        <field name="email"/>
+                    </tree>
+                </field>
+            </page>
+		</xpath>
+        <xpath expr="//notebook/page[@name='branches']" position="after">
+			<page name="api_keys" string="API Keys">
+                <group>
+                <group>
+                    <field name="api_bearer_token" />
+                    <field name="jinren_demo_data" />
+                </group>
+                <group>
+                    <field name="token" readonly="1"/>
+                    <button name="create_token_bearer" type="object" string="Generate Token"/>
+                </group>
+                </group>
+            </page>
+		</xpath>
+      </field>
+  </record>
+<!-- adding new fields for wakatech id and name  -->
+  <record id="res_currency_inherit_waka" model="ir.ui.view">
+      <field name="name">inherit.currency.add.waka</field>
+      <field name="model">res.currency</field>
+      <field name="inherit_id" ref="base.view_currency_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='name']" position="after">
+              <field name="wakatech_id" required="1"/>
+              <field name="wakatech_name" required="1"/>
+          </xpath>
+      </field>
+  </record>
+
+
+    <!-- Tree View movement type-->
+    <record id="view_movement_type_tree" model="ir.ui.view">
+        <field name="name">movement.type.tree</field>
+        <field name="model">movement.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="wakatech_id"/>
+                <field name="wakatech_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View movement type-->
+    <record id="view_movement_type_form" model="ir.ui.view">
+        <field name="name">movement.type.form</field>
+        <field name="model">movement.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="wakatech_id"/>
+                    <field name="wakatech_name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+
+
+  <!-- PORT MASTER Tree and Form Views -->
+    <record id="view_port_master_tree" model="ir.ui.view">
+        <field name="name">port.master.tree</field>
+        <field name="model">port.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="wakatech_id" />
+                <field name="wakatech_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_port_master_form" model="ir.ui.view">
+        <field name="name">port.master.form</field>
+        <field name="model">port.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="wakatech_id"/>
+                    <field name="wakatech_name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Port Master-->
+    <record id="action_port_master" model="ir.actions.act_window">
+            <field name="name">Port Master</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">port.master</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_port_master_tree"/>
+
+        </record>
+  <!-- Action Movement Type -->
+    <record id="action_movement_type" model="ir.actions.act_window">
+        <field name="name">Movement Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">movement.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_movement_type_tree"/>
+    </record>
+
+    <!-- Menu Item -->
+
+  <menuitem id="wakatech_masters" name="Wakatech Masters"  sequence="10" parent="account.menu_finance_configuration">
+    <menuitem id="port_master" name="Port"  sequence="0" action="action_port_master"/>
+    <menuitem id="menu_movement_type" name="Movement Type" sequence="1" action="action_movement_type"/>
+  </menuitem>
+  </data>
+</odoo>

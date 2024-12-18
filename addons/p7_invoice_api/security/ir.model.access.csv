@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_p7_invoice_api_p7_invoice_api,p7_invoice_api.p7_invoice_api,model_p7_invoice_api_p7_invoice_api,base.group_user,1,1,1,1
+access_port_master,access_port_master,model_port_master,base.group_user,1,1,1,1
+access_movement_type_user,access_movement_type_user,model_movement_type,base.group_user,1,1,1,1
+api_keys_config,api_keys_config,model_api_keys_config,base.group_user,1,1,1,1
+company_invites,company_invites,model_company_invites,base.group_user,1,1,1,1
+waka_city_master,waka_city_master,model_waka_city_master,base.group_user,1,1,1,1
+jinren_master,jinren_master,model_jinren_master,p7_invoice_api.group_custom_manager_jinren,1,1,1,1
+jinren_api_logs,jinren_api_logs,model_jinren_api_logs,p7_invoice_api.group_custom_manager_jinren,1,1,1,1
+
