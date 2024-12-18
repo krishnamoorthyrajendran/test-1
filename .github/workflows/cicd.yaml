@@ -8,7 +8,7 @@ on:
 jobs:
   build-dev:
     if: github.ref == 'refs/heads/dev'
-    runs-on: self-hosted
+    runs-on: deploy_dev
     steps: 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
         
   deploy-dev:
     if: github.ref == 'refs/heads/dev'
-    runs-on: self-hosted
+    runs-on: build_dev
     needs: build-dev
     steps:
       - name: Checkout code
@@ -31,7 +31,7 @@ jobs:
           
   build-qa:
     if: github.ref == 'refs/heads/qa'
-    runs-on: self-hosted
+    runs-on: build_qa
     steps: 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -43,7 +43,7 @@ jobs:
         
   deploy-qa:
     if: github.ref == 'refs/heads/qa'
-    runs-on: self-hosted
+    runs-on: deploy_qa
     needs: build-qa
     steps:
       - name: Checkout code
