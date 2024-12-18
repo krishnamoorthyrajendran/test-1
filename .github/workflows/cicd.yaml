@@ -27,7 +27,7 @@ jobs:
       
       - name: Deploy for dev
         run: |
-          docker stack deploy --compose-file docker/docker-compose.yml dev
+          docker stack deploy --compose-file dev-docker/docker-compose.yml dev
           
   build-qa:
     if: github.ref == 'refs/heads/qa'
@@ -39,7 +39,7 @@ jobs:
       - name: Move files to QA
         run: |
           mkdir -p /opt/odoo/addons/qa
-          cp -r addons/* /opt/odoo/addons/qa/
+          cp -r addons/* /opt/odoo/qa/addons/
         
   deploy-qa:
     if: github.ref == 'refs/heads/qa'
@@ -51,4 +51,4 @@ jobs:
       
       - name: Deploy for QA
         run: |
-          docker stack deploy --compose-file dockerfile/docker-compose.yaml qa
+          docker stack deploy --compose-file qa-docker/docker-compose.yaml qa
