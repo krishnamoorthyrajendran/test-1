@@ -1,0 +1,54 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - dev  
+      - qa
+
+jobs:
+  build-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: self-hosted
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Move files to dev
+        run: |
+          cp -r addons/* /opt/odoo/addons/
+        
+  deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: self-hosted
+    needs: build-dev
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Deploy for dev
+        run: |
+          docker stack deploy --compose-file dockerfile/docker-compose.yaml wakatech-dev
+          
+  build-qa:
+    if: github.ref == 'refs/heads/qa'
+    runs-on: self-hosted
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Move files to QA
+        run: |
+          mkdir -p /opt/odoo/addons/qa
+          cp -r addons/* /opt/odoo/addons/qa/
+        
+  deploy-qa:
+    if: github.ref == 'refs/heads/qa'
+    runs-on: self-hosted
+    needs: build-qa
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Deploy for QA
+        run: |
+          docker stack deploy --compose-file dockerfile/docker-compose.yaml odoo17-EE
